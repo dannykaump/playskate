@@ -16,7 +16,7 @@ function MakeSkater(name, stance, skill) {
 let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
 let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
 let gravette = new MakeSkater('David Gravette', 'regular', 0.32)
-let tony = new MakeSkater('Tony Hawk', 'goofy', 'loose', 0.31)
+let tony = new MakeSkater('Tony Hawk', 'goofy', 0.31)
 let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
 let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 
