@@ -4,22 +4,21 @@ const result = document.getElementById('result')
 let moves = document.getElementById('moves')
 
 //Skater Constructor//
-function MakeSkater(name, stance, style, skill) {
+function MakeSkater(name, stance, skill) {
     this.name = name || 'you'
     this.stance = stance || 'regular';
-    this.style = style || 'balanced'
     this.skill = skill || 0.2
     this.landTrick = _ => Math.random() < 0.45 + this.skill ? 'stomped!' : "failed!"; // chance of landing increased by skill rating
     this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
 }
 
 //skaters -- name, stance, style, skill(between 0 - 0.5) -- //
-let koston = new MakeSkater('Eric Koston', 'regular', 'balanced', 0.35)
-let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 'balanced', 0.35)
-let gravette = new MakeSkater('David Gravette', 'regular', 'relaxed', 0.32)
+let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
+let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
+let gravette = new MakeSkater('David Gravette', 'regular', 0.32)
 let tony = new MakeSkater('Tony Hawk', 'goofy', 'loose', 0.31)
-let curren = new MakeSkater('Curren Caples', 'goofy', 'relaxed', 0.34)
-let mullen = new MakeSkater('Rodney Mullen', 'regular', 'balanced', 0.35)
+let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
+let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 
 // array of skaters 
 let skaters = [koston, nyjah, gravette, tony, curren, mullen, new MakeSkater('Andrew Reynolds')]
