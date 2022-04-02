@@ -1,7 +1,8 @@
 //SKATE//
 const btn = document.getElementById('btn')
 const result = document.getElementById('result')
-let moves = document.getElementById('moves')
+const moves = document.getElementById('moves')
+const input = document.getElementById('input')
 
 //Skater Constructor//
 function MakeSkater(name, stance, skill) {
@@ -13,7 +14,7 @@ function MakeSkater(name, stance, skill) {
     this.str = ''
     this.total = 0
     
-    this.landTrick = _ => Math.random() < 0.45 + this.skill ? true : false; // chance of landing increased by skill rating
+    this.landTrick = _ => Math.random() < 0.45 + this.skill; // chance of landing increased by skill rating
 
     this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
     
@@ -81,8 +82,9 @@ let skate = ['s', 'k', 'a', 't', 'e'];
 let randomSkater = randomElem(skaters);
 //play skate -- fist to "skate" loses
 function playSkate(skater1, skater2) {
-    skater1 = new MakeSkater()
-    skater2 = randomIfUndefined(skater2)  
+    skater1 = new MakeSkater(input.value)
+    skater2 = randomIfUndefined(skater2) 
+    skater2.setting = false 
     // while neither skater has "skate"
     while (skater1.total < 5 && skater2.total < 5) {
         let trick = randomElem(tricks) // select trick
@@ -107,6 +109,7 @@ function playSkate(skater1, skater2) {
                             skater1.oof(trick)
                         }   
     }//game over
+
     result.innerHTML = `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
     return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
 }
