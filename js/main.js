@@ -64,7 +64,8 @@ let tricks = [
 let coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
 //bad words
 let uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
-
+//letters array
+const skate = ['s', 'k', 'a', 't', 'e'];
 
 //generate random num under x
 const randomNumUnder = (x) => Math.round(Math.random() * (x - 1))
@@ -77,9 +78,6 @@ const randomIfUndefined = (arg) => !arg ? randomElem(skaters) : arg;
 
 btn.addEventListener('click', playSkate)
 
-let skate = ['s', 'k', 'a', 't', 'e'];
-
-let randomSkater = randomElem(skaters);
 //play skate -- fist to "skate" loses
 function playSkate(skater1, skater2) {
     skater1 = new MakeSkater(input.value)
@@ -109,7 +107,6 @@ function playSkate(skater1, skater2) {
                             skater1.oof(trick)
                         }   
     }//game over
-
     result.innerHTML = `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
     return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
 }
