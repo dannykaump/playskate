@@ -4,9 +4,47 @@ const result = document.getElementById('result')
 const moves = document.getElementById('moves')
 const input = document.getElementById('input')
 
+//skaters -- name, stance, style, skill(between 0 - 0.5) -- //
+let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
+let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
+let gravette = new MakeSkater('David Gravette', 'regular', 0.32)
+let tony = new MakeSkater('Tony Hawk', 'goofy', 0.31)
+let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
+let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
+
+// array of skaters 
+let skaters = [koston, nyjah, gravette, tony, curren, mullen, new MakeSkater('Andrew Reynolds')]
+
+// array of tricks
+let tricks = [
+    'kickflip', 'heelflip', 'nollie flip', 'nollie heelflip', 
+    'shove-it', 'FS shove-it', '360 shove-it', '360 flip', 
+    'inward heelflip', 'hardflip', 'varial kickflip', 'full-cab',  
+    'BS 360', 'frontside flip', 'backside flip', 'half-cab', 'half-cab kickflip',
+    'FS 360', 'nollie big-flip', 'big-flip', 'BS 180', 'fakie frontside flip',
+    'nollie late-heelflip', 'nollie shove-it', 'frontside flip', 'nollie BS 180',
+    'varial hardflip', 'varial heelflip', 'impossible'
+]
+//rad words
+let coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
+//bad words
+let uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
+//letters array
+const skate = ['s', 'k', 'a', 't', 'e'];
+
+//generate random num under x
+const randomNumUnder = (x) => Math.round(Math.random() * (x - 1))
+
+//pull random elem from array
+const randomElem = (arr) => arr[randomNumUnder(arr.length)];
+
+//return random skater from array if arg is undefined
+const randomIfUndefined = (arg) => !arg ? randomElem(skaters) : arg;
+
+btn.addEventListener('click', playSkate)
+
 //Skater Constructor//
 function MakeSkater(name, stance, skill) {
-
     this.name = name || 'you'
     this.stance = stance || 'regular';
     this.skill = skill || 0.3
@@ -37,47 +75,6 @@ function MakeSkater(name, stance, skill) {
         this.total++
     }
 }
-
-//skaters -- name, stance, style, skill(between 0 - 0.5) -- //
-let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
-let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
-let gravette = new MakeSkater('David Gravette', 'regular', 0.32)
-let tony = new MakeSkater('Tony Hawk', 'goofy', 0.31)
-let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
-let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
-
-// array of skaters 
-let skaters = [koston, nyjah, gravette, tony, curren, mullen, new MakeSkater('Andrew Reynolds')]
-
-// array of tricks
-let tricks = [
-    'kickflip', 'heelflip', 'nollie flip', 'nollie heelflip', 
-    'shove-it', 'FS shove-it', '360 shove-it', '360 flip', 
-    'inward heelflip', 'hardflip', 'varial kickflip', 'full-cab',  
-    'BS 360', 'frontside flip', 'backside flip', 'half-cab', 'half-cab kickflip',
-    'FS 360', 'nollie big-flip', 'big-flip', 'BS 180', 'fakie frontside flip',
-    'nollie late-heelflip', 'nollie shove-it', 'frontside flip', 'nollie BS 180',
-    'varial hardflip', 'varial heelflip', 'straight-up backflip'
-]
-
-//rad words
-let coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
-//bad words
-let uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
-//letters array
-const skate = ['s', 'k', 'a', 't', 'e'];
-
-//generate random num under x
-const randomNumUnder = (x) => Math.round(Math.random() * (x - 1))
-
-//pull random elem from array
-const randomElem = (arr) => arr[randomNumUnder(arr.length)];
-
-//return random skater from array if arg is undefined
-const randomIfUndefined = (arg) => !arg ? randomElem(skaters) : arg;
-
-btn.addEventListener('click', playSkate)
-
 //play skate -- fist to "skate" loses
 function playSkate(skater1, skater2) {
     skater1 = new MakeSkater(input.value)
