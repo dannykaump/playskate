@@ -3,6 +3,7 @@ const btn = document.getElementById('btn')
 const result = document.getElementById('result')
 const moves = document.getElementById('moves')
 const input = document.getElementById('input')
+const image = document.querySelector('.image')
 
 //skaters -- name, stance, style, skill(between 0 - 0.5) -- //
 let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
@@ -52,32 +53,32 @@ function MakeSkater(name, stance, skill) {
     this.str = ''
     this.total = 0
     
-    this.landTrick = _ => Math.random() < 0.45 + this.skill; // chance of landing increased by skill rating
+    //attempt trick -- returns boolean//
+    this.landTrick = _ => Math.random() < 0.4 + this.skill; // chance of landing increased by skill rating  
 
-    this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
-    
     // reset total and str
     this.reset = function() {
         this.total = 0
         this.str = ''
+        moves.innerHTML = ''
+        image.classList.add('hidden')
     }
-    
     // both skaters land trick //
     this.rad = function (trick) {
         console.log(`${trick}: ${randomElem(coolWords)}! both skaters landed!`)
-        moves.innerHTML = `${trick}: ${randomElem(coolWords)}! both skaters landed!`
+        moves.innerHTML += '<br>' + `${trick}: ${randomElem(coolWords)}! both skaters landed!`
     }
     // this skater fails set
     this.failed = function(trick) {
         console.log(`${this.name} failed to land ${trick}, switching places.`)
-        moves.innerHTML = `${this.name} failed to land ${trick}, switching places.`
+        moves.innerHTML += '<br>' + `${this.name} failed to land ${trick}, switching places.`
         this.setting = false
     }
     // this skater fails rebuttal
     this.oof = function(trick) {
         this.str += skate[this.total]
         console.log(`${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`)
-        moves.innerHTML = `${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`
+        moves.innerHTML += '<br>' + `${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`
         this.total++
     }
 }

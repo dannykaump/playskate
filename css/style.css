@@ -15,7 +15,15 @@ img{
   margin: 0 auto;
 }
 
+body {
+  text-align: center;
+}
+
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+.hidden {
+  display: none;
+}
