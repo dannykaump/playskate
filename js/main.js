@@ -55,7 +55,8 @@ function MakeSkater(name, stance, skill) {
     this.landTrick = _ => Math.random() < 0.45 + this.skill; // chance of landing increased by skill rating
 
     this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
-
+    
+    // reset total and str
     this.reset = function() {
         this.total = 0
         this.str = ''
@@ -97,18 +98,18 @@ function playSkate(skater1, skater2) {
             skater1.rad(trick)
         // if skater 1 fails to set, skater 2's turn to set        
         }   else if (skater1.setting && !landed1) {
-            skater1.failed(trick)
-            skater2.setting = true
-            // if skater 1 lands trick & is setting //
-            }   else if (skater1.setting && landed1 && !landed2) {
-                    skater2.oof(trick)
-            // if skater 2 lands trick & is setting
-                }   else if (skater2.setting && !landed2) {
-                        skater2.failed(trick)
-                        skater1.setting = true
-                    }   else {
-                            skater1.oof(trick)
-                        }   
+                skater1.failed(trick)
+                skater2.setting = true
+        // if skater 1 lands trick & is setting //
+        }   else if (skater1.setting && landed1 && !landed2) {
+                skater2.oof(trick)
+        // if skater 2 lands trick & is setting
+        }   else if (skater2.setting && !landed2) {
+                skater2.failed(trick)
+                skater1.setting = true
+        }   else {
+                skater1.oof(trick)
+            }   
     }//game over
     result.innerHTML = `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
     return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
