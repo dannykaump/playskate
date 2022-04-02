@@ -13,10 +13,10 @@ let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
 let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 
 // array of skaters 
-let skaters = [koston, nyjah, gravette, tony, curren, mullen, new MakeSkater('Andrew Reynolds')]
+const skaters = [koston, nyjah, gravette, tony, curren, mullen, new MakeSkater('Andrew Reynolds')]
 
 // array of tricks
-let tricks = [
+const tricks = [
     'kickflip', 'heelflip', 'nollie flip', 'nollie heelflip', 
     'shove-it', 'FS shove-it', '360 shove-it', '360 flip', 
     'inward heelflip', 'hardflip', 'varial kickflip', 'full-cab',  
@@ -26,9 +26,9 @@ let tricks = [
     'varial hardflip', 'varial heelflip', 'impossible'
 ]
 //rad words
-let coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
+const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
 //bad words
-let uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
+const uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
 //letters array
 const skate = ['s', 'k', 'a', 't', 'e'];
 
