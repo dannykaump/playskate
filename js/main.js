@@ -8,32 +8,33 @@ function MakeSkater(name, stance, skill) {
 
     this.name = name || 'you'
     this.stance = stance || 'regular';
-    this.skill = skill || 0.2
+    this.skill = skill || 0.3
     this.setting = true
     this.str = ''
     this.total = 0
-    this.trick = 
+    
+    this.landTrick = _ => Math.random() < 0.45 + this.skill ? true : false; // chance of landing increased by skill rating
 
+    this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
+    
+    // both skaters land trick //
     this.rad = function (trick) {
         console.log(`${trick}: ${randomElem(coolWords)}! both skaters landed!`)
         moves.innerHTML = `${trick}: ${randomElem(coolWords)}! both skaters landed!`
     }
+    // this skater fails set
     this.failed = function(trick) {
         console.log(`${this.name} failed to land ${trick}, switching places.`)
         moves.innerHTML = `${this.name} failed to land ${trick}, switching places.`
         this.setting = false
     }
-
+    // this skater fails rebuttal
     this.oof = function(trick) {
         this.str += skate[this.total]
         console.log(`${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`)
         moves.innerHTML = `${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`
         this.total++
     }
-
-    this.landTrick = _ => Math.random() < 0.45 + this.skill ? true : false; // chance of landing increased by skill rating
-
-    this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
 }
 
 //skaters -- name, stance, style, skill(between 0 - 0.5) -- //
@@ -102,7 +103,7 @@ function playSkate(skater1, skater2) {
                 }   else if (skater2.setting && !landed2) {
                         skater2.failed(trick)
                         skater1.setting = true
-                    }   else if (skater2.setting && landed2 && !landed1) {
+                    }   else {
                             skater1.oof(trick)
                         }   
     }//game over
