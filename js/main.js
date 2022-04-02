@@ -5,10 +5,34 @@ let moves = document.getElementById('moves')
 
 //Skater Constructor//
 function MakeSkater(name, stance, skill) {
+
     this.name = name || 'you'
     this.stance = stance || 'regular';
     this.skill = skill || 0.2
-    this.landTrick = _ => Math.random() < 0.45 + this.skill ? 'stomped!' : "failed!"; // chance of landing increased by skill rating
+    this.setting = true
+    this.str = ''
+    this.total = 0
+    this.trick = 
+
+    this.rad = function (trick) {
+        console.log(`${trick}: ${randomElem(coolWords)}! both skaters landed!`)
+        moves.innerHTML = `${trick}: ${randomElem(coolWords)}! both skaters landed!`
+    }
+    this.failed = function(trick) {
+        console.log(`${this.name} failed to land ${trick}, switching places.`)
+        moves.innerHTML = `${this.name} failed to land ${trick}, switching places.`
+        this.setting = false
+    }
+
+    this.oof = function(trick) {
+        this.str += skate[this.total]
+        console.log(`${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`)
+        moves.innerHTML = `${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`
+        this.total++
+    }
+
+    this.landTrick = _ => Math.random() < 0.45 + this.skill ? true : false; // chance of landing increased by skill rating
+
     this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
 }
 
@@ -16,7 +40,7 @@ function MakeSkater(name, stance, skill) {
 let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
 let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
 let gravette = new MakeSkater('David Gravette', 'regular', 0.32)
-let tony = new MakeSkater('Tony Hawk', 'goofy', 'loose', 0.31)
+let tony = new MakeSkater('Tony Hawk', 'goofy', 0.31)
 let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
 let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 
@@ -51,63 +75,39 @@ const randomIfUndefined = (arg) => !arg ? randomElem(skaters) : arg;
 
 btn.addEventListener('click', playSkate)
 
+let skate = ['s', 'k', 'a', 't', 'e'];
+
+let randomSkater = randomElem(skaters);
 //play skate -- fist to "skate" loses
 function playSkate(skater1, skater2) {
-    
     skater1 = new MakeSkater()
-    skater2 = randomIfUndefined(skater2)
-
-    let skate = ['s', 'k', 'a', 't', 'e'];
-    let total1 = 0;
-    let total2 = 0;
-    let str1 = '';
-    let str2 = '';
-    let setting = false // determines turn of skater
-
+    skater2 = randomIfUndefined(skater2)  
     // while neither skater has "skate"
-    while (total1 < 5 && total2 < 5) {
+    while (skater1.total < 5 && skater2.total < 5) {
         let trick = randomElem(tricks) // select trick
-        let landed1 = skater1.landTrick()
-        let landed2 = skater2.landTrick()
+        // determine success
+        let landed1 = skater1.landTrick();
+        let landed2 = skater2.landTrick();
         // if both skaters land trick //
-        if (landed1 === 'stomped!' && landed2 === 'stomped!') {
-            console.log(`${trick}: ${randomElem(coolWords)}! both skaters landed!`)
-            moves.innerHTML = `${trick}: ${randomElem(coolWords)}! both skaters landed!`
-        // if skater 1 lands trick //
-        }   else if (landed1 === 'stomped!' && landed2 === 'failed!') {
-                str2 += skate[total2]
-                console.log(`${trick}: ${randomElem(uncoolWords)}. ${skater2.name} recieved ${str2}.`)
-                moves.innerHTML = `${trick}: ${randomElem(uncoolWords)}. ${skater2.name} recieved ${str2}.`
-                total2++
-        // if skater 1 fails, skater 2's turn to set        
-            }   else {
-                    console.log(`${skater1.name} failed to land ${trick}, switching places.`)
-                    moves.innerHTML = `${skater1.name} failed to land ${trick}, switching places.`
-                    setting = true
-        // inverse while skater 2 is setting trick
-                    while (setting && total1 < 5) {
-                        trick = randomElem(tricks)
-                        landed1 = skater1.landTrick()
-                        landed2 = skater2.landTrick()
-                        if (skater2.landTrick() === 'stomped!' && skater1.landTrick() === 'stomped!') {
-                            console.log(`${trick}: ${randomElem(coolWords)}! both skaters landed!`)
-                            moves.innerHTML = `${trick}: ${randomElem(coolWords)}! both skaters landed!`;
-                        }   else if (skater2.landTrick() === 'stomped!' && skater1.landTrick() === 'failed!') {
-                                str1 += skate[total1]
-                                console.log(`${trick}: ${randomElem(uncoolWords)}. ${skater1.name} recieved ${str1}.`)
-                                moves.innerHTML = `${trick}: ${randomElem(uncoolWords)}. ${skater1.name} recieved ${str1}.`
-                                total1++
-                            }   else {
-                                    console.log(`${skater2.name} failed to land ${trick}, switching places.`)
-                                    moves.innerHTML = `${skater2.name} failed to land ${trick}, switching places.`
-                                    setting = false
-                                }                       
-                    }
-                }
-        
+        if (landed1 && landed2) {
+            skater1.rad(trick)
+        // if skater 1 fails to set, skater 2's turn to set        
+        }   else if (skater1.setting && !landed1) {
+            skater1.failed(trick)
+            skater2.setting = true
+            // if skater 1 lands trick & is setting //
+            }   else if (skater1.setting && landed1 && !landed2) {
+                    skater2.oof(trick)
+            // if skater 2 lands trick & is setting
+                }   else if (skater2.setting && !landed2) {
+                        skater2.failed(trick)
+                        skater1.setting = true
+                    }   else if (skater2.setting && landed2 && !landed1) {
+                            skater1.oof(trick)
+                        }   
     }//game over
-    result.innerHTML = `${skater1.name}: ${str1} | ${skater2.name}: ${str2}`;
-    return `${skater1.name}: ${str1} | ${skater2.name}: ${str2}`;
+    result.innerHTML = `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
+    return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
 }
 
 //play x random games
