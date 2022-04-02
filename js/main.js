@@ -55,6 +55,11 @@ function MakeSkater(name, stance, skill) {
     this.landTrick = _ => Math.random() < 0.45 + this.skill; // chance of landing increased by skill rating
 
     this.doTrick = _ => console.log(`${randomElem(tricks)} ${this.landTrick()}`)
+
+    this.reset = function() {
+        this.total = 0
+        this.str = ''
+    }
     
     // both skaters land trick //
     this.rad = function (trick) {
@@ -80,6 +85,7 @@ function playSkate(skater1, skater2) {
     skater1 = new MakeSkater(input.value)
     skater2 = randomIfUndefined(skater2) 
     skater2.setting = false 
+    skater2.reset()
     // while neither skater has "skate"
     while (skater1.total < 5 && skater2.total < 5) {
         let trick = randomElem(tricks) // select trick
