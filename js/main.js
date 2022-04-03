@@ -8,7 +8,7 @@ const image = document.querySelector('.image')
 //Skater Constructor//
 class MakeSkater {
     constructor(name, stance, skill) {
-        this.name = name || 'you'
+        this.name = name || 'You'
         this.stance = stance || 'regular'
         this.skill = skill || 0.33
         this.setting = true
