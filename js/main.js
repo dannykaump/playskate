@@ -28,7 +28,7 @@ const tricks = [
     'varial hardflip', 'varial heelflip', 'impossible'
 ]
 //rad words
-const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad',]
+const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad', 'Yew']
 //bad words
 const uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
 //letters array
