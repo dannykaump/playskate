@@ -81,19 +81,22 @@ let tony = new MakeSkater('Tony Hawk', 'goofy', 0.31)
 let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
 let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 let reynolds = new MakeSkater('Andrew Reynolds', 'regular', 0.33)
+let fletcher = new MakeSkater('Greyson Fletcher', 'goofy', 0.31)
+let pRod = new MakeSkater('P-Rod', 'regular', 0.35)
+let foy = new MakeSkater('Jamie Foy', 'regular', 0.33)
 
 // array of skater objects 
-const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds]
+const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds, fletcher, pRod, foy]
 
 // flatground tricks
 const tricks = [
-    'kickflip', 'heelflip', 'nollie flip', 'nollie heelflip', 
-    'shove-it', 'FS shove-it', '360 shove-it', '360 flip', 
-    'inward heelflip', 'hardflip', 'varial kickflip', 'full-cab',  
-    'BS 360', 'frontside flip', 'backside flip', 'half-cab', 'half-cab kickflip',
+    'kickflip', 'heelflip', 'nollie-flip', 'nollie-heelflip', 
+    'shove-it', 'FS shove-it', '360 shove-it', '360 flip',
+    'inward-heelflip', 'hardflip', 'varial-kickflip', 'full-cab',  
+    'BS 360', 'frontside-flip', 'backside-flip', 'half-cab', 'half-cab kickflip',
     'FS 360', 'nollie big-flip', 'big-flip', 'BS 180', 'fakie frontside flip',
     'nollie late-heelflip', 'nollie shove-it', 'frontside flip', 'nollie BS 180',
-    'varial hardflip', 'varial heelflip', 'impossible'
+    '360 hardflip', 'varial-heelflip', 'impossible', 'big-spin',
 ]
 //rad words
 const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Yew', 'Woah']
