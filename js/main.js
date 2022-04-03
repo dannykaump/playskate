@@ -13,15 +13,13 @@ class MakeSkater {
         this.skill = skill || 0.33
         this.setting = true
         this.str = ''
-        this.total = 0
         this.landed
 
         //attempt trick -- returns boolean
         this.landTrick = _ => Math.random() < 0.4 + this.skill // chance of landing increased by skill rating  
 
-        // reset total and str
+        // clear values & DOM
         this.reset = function () {
-            this.total = 0
             this.str = ''
             this.setting = false
             moves.innerHTML = ''
@@ -32,25 +30,23 @@ class MakeSkater {
             moves.innerHTML += `${this.name} landed <strong>${trick}</strong>: ${randomElem(coolWords)}! both skaters landed!` + '<br>'
         }
         // this skater fails to set
-        this.failed = function (trick, newSetter) {
+        this.failed = function (trick, opponent) {
             moves.innerHTML += `${this.name} failed to land <strong>${trick}</strong>, switching places.` + '<br>'
             this.setting = false
-            newSetter.setting = true
+            opponent.setting = true
         }
         // this skater fails rebuttal
         this.oof = function (trick, setter) {
-            this.str += skate[this.total]
+            this.str += skate[this.str.length]
             moves.innerHTML += `${setter.name} landed <strong>${trick}</strong>: ${randomElem(uncoolWords)}. ${this.name} recieved <strong>${this.str}</strong>.` + '<br>'
-            this.total++
         }
         // determine sucess of trick attempt
         this.judge = function (opponent) {
             this.landed = this.landTrick()
             opponent.landed = opponent.landTrick()
         }
-
         // check win conditions & run approriate function
-        this.checkSetter = function (trick, opponent) {
+        this.checkWin = function (trick, opponent) {
             if (this.landed && opponent.landed) {
                 if (this.setting) {
                     this.rad(trick)
@@ -83,10 +79,10 @@ let curren = new MakeSkater('Curren Caples', 'goofy', 0.34)
 let mullen = new MakeSkater('Rodney Mullen', 'regular', 0.35)
 let reynolds = new MakeSkater('Andrew Reynolds', 'regular', 0.33)
 
-// array of skaters 
+// array of skater objects 
 const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds]
 
-// array of tricks
+// flatground tricks
 const tricks = [
     'kickflip', 'heelflip', 'nollie flip', 'nollie heelflip', 
     'shove-it', 'FS shove-it', '360 shove-it', '360 flip', 
@@ -97,10 +93,10 @@ const tricks = [
     'varial hardflip', 'varial heelflip', 'impossible'
 ]
 //rad words
-const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Rad', 'Yew']
+const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Yew', 'Woah']
 //bad words
-const uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang']
-//letters array
+const uncoolWords = ['Oof', 'Weak', 'Whack', 'Ouch', 'Dang', 'Bummer']
+//letters
 const skate = ['S', 'K', 'A', 'T', 'E'];
 
 //generate random num under x
@@ -117,16 +113,17 @@ btn.addEventListener('click', playSkate)
 function playSkate(skater1, skater2) {
     // create new skater & assign skater2
     skater1 = new MakeSkater(input.value)
-    skater2 = randomIfUndefined(skater2) 
+    skater2 = randomIfUndefined(skater2)
+    // clear values & DOM
     skater2.reset()
     // while neither skater has "SKATE"
-    while (skater1.total < 5 && skater2.total < 5) {
+    while (skater1.str.length < 5 && skater2.str.length < 5) {
         // select trick 
         let trick = randomElem(tricks) 
-        // determine success 
+        // determine trick success 
         skater1.judge(skater2)
-        // run checkSetter func
-        skater1.checkSetter(trick, skater2)
+        // Check win conditions & call appropriate function -- update values & DOM
+        skater1.checkWin(trick, skater2)
     }
     //game over
     result.innerHTML = `${skater1.name}: <strong>${skater1.str}</strong> | ${skater2.name}: <strong>${skater2.str}</strong>`;
