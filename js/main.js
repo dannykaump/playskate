@@ -57,13 +57,13 @@ class MakeSkater {
             }   else {
                     opponent.rad(trick)
                 }
-        }   else if (!this.landed) {
+        }   else if (!this.landed && opponent.landed) {
                 if (this.setting) {
                     this.failed(trick, opponent)
             }   else {
                     this.oof(trick, opponent)
                 }
-        }   else {
+        }   else if (this.landed && !opponent.landed) {
                 if (opponent.setting) {
                     opponent.failed(trick, this)
             }   else {
