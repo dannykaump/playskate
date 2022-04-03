@@ -27,3 +27,7 @@ body {
 .hidden {
   display: none;
 }
+
+p {
+  font-size: .8em;
+}
