@@ -81,7 +81,7 @@ function MakeSkater(name, stance, skill) {
     this.oof = function(trick, setter) {
         this.str += skate[this.total]
         console.log(`${trick}: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.`)
-        moves.innerHTML += `${setter.name} landed <strong>${trick}</strong>: ${randomElem(uncoolWords)}. ${this.name} recieved ${this.str}.` + '<br>'
+        moves.innerHTML += `${setter.name} landed <strong>${trick}</strong>: ${randomElem(uncoolWords)}. ${this.name} recieved <strong>${this.str}</strong>.` + '<br>'
         this.total++
     }
 }

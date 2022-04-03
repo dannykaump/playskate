@@ -31,3 +31,8 @@ body {
 p {
   font-size: .8em;
 }
+
+strong {
+  color: red;
+  font-size: 1.2em;
+}
