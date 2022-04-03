@@ -51,21 +51,21 @@ class MakeSkater {
             if (this.landed && opponent.landed) {
                 if (this.setting) {
                     this.rad(trick)
-            }   else {
+                }   else {
                     opponent.rad(trick)
                 }
             // player failed -- switch turns or get letter
-        }   else if (!this.landed && opponent.landed) {
+            }   else if (!this.landed && opponent.landed) {
                 if (this.setting) {
                     this.failed(trick, opponent)
-            }   else {
+                }   else {
                     this.oof(trick, opponent)
                 }
             // opponent failed -- switch turns or give letter
-        }   else if (this.landed && !opponent.landed) {
+            }   else if (this.landed && !opponent.landed) {
                 if (opponent.setting) {
                     opponent.failed(trick, this)
-            }   else {
+                }   else {
                     opponent.oof(trick, this)
                 }
             }
