@@ -117,7 +117,7 @@ function playSkate(skater1, skater2) {
                 skater1.oof(trick, skater2)
             }   
     }//game over
-    result.innerHTML = `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
+    result.innerHTML = `${skater1.name}: <strong>${skater1.str}</strong> | ${skater2.name}: <strong>${skater2.str}</strong>`;
     return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
 }
 
