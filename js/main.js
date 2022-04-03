@@ -47,18 +47,21 @@ class MakeSkater {
         }
         // check win conditions & run approriate function
         this.checkWin = function (trick, opponent) {
+            // both landed -- who was setting?
             if (this.landed && opponent.landed) {
                 if (this.setting) {
                     this.rad(trick)
             }   else {
                     opponent.rad(trick)
                 }
+            // player failed -- switch turns or get letter
         }   else if (!this.landed && opponent.landed) {
                 if (this.setting) {
                     this.failed(trick, opponent)
             }   else {
                     this.oof(trick, opponent)
                 }
+            // opponent failed -- switch turns or give letter
         }   else if (this.landed && !opponent.landed) {
                 if (opponent.setting) {
                     opponent.failed(trick, this)
