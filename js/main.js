@@ -91,11 +91,11 @@ const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds, fletch
 // key values of trick:difficulty
 const tricks = {
     'kickflip':0.01, 'heelflip':0.02, 'nollie flip':0.07, 'nollie heelflip':0.9, 
-    'shove-it':0.01, 'FS shove-it':0.02, '360 shove-it':0.08, '360 flip':1.3, 
-    'inward heelflip':0.1, 'hardflip':0.1, 'varial kickflip':0.1, 'full-cab':0.12,  
-    'BS 360':0.14, 'frontside flip':0.12, 'backside flip':0.12, 'half-cab':0.4, 'half-cab kickflip':0.1,
-    'FS 360':0.15, 'nollie big-flip':0.17, 'big-flip':0.14, 'BS 180':0.04, 'fakie frontside flip':0.13,
-    'nollie late-heelflip':0.13, 'nollie shove-it':0.07,'nollie BS 180':0.08,'varial heelflip':0.11, 'impossible':0.13
+    'shove-it':0.01, 'FS shove-it':0.02, '360 shove-it':0.1, '360 flip':0.12, 
+    'inward heelflip':0.1, 'hardflip':0.1, 'varial kickflip':0.1, 'full-cab':0.13,  
+    'BS 360':0.15, 'frontside flip':0.12, 'backside flip':0.12, 'half-cab':0.4, 'half-cab kickflip':0.1,
+    'FS 360':0.18, 'nollie big-flip':0.19, 'big-flip':0.14, 'BS 180':0.04, 'fakie frontside flip':0.13,
+    'nollie late-heelflip':0.13, 'nollie shove-it':0.07,'nollie BS 180':0.08,'varial heelflip':0.11, 'impossible':0.14
 }
 //rad words
 const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Yew', 'Woah']
