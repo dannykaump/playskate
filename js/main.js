@@ -15,7 +15,7 @@ class MakeSkater {
         this.str = ''
         this.landed
         //attempt trick -- returns boolean
-        this.landTrick = _ => Math.random() < 0.4 + this.skill
+        this.landTrick = (difficulty) => Math.random() < 0.33 + this.skill - difficulty;
 
         // clear values & DOM
         this.reset = function () {
@@ -40,9 +40,9 @@ class MakeSkater {
             moves.innerHTML += `${setter.name} landed <strong>${trick}</strong>: ${randomElem(uncoolWords)}. ${this.name} recieved <strong>${this.str}</strong>.` + '<br>'
         }
         // determine sucess of trick attempt
-        this.judge = function (opponent) {
-            this.landed = this.landTrick()
-            opponent.landed = opponent.landTrick()
+        this.judge = function (opponent, difficulty) {
+            this.landed = this.landTrick(difficulty)
+            opponent.landed = opponent.landTrick(difficulty)
         }
         // check win conditions & run approriate function
         this.checkWin = function (trick, opponent) {
@@ -87,15 +87,16 @@ let foy = new MakeSkater('Jamie Foy', 'regular', 0.33)
 const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds, fletcher, pRod, foy]
 
 // flatground tricks
-const tricks = [
-    'kickflip', 'heelflip', 'nollie-flip', 'nollie-heelflip', 
-    'shove-it', 'FS shove-it', '360 shove-it', '360 flip',
-    'inward-heelflip', 'hardflip', 'varial-kickflip', 'full-cab',  
-    'BS 360', 'frontside-flip', 'backside-flip', 'half-cab', 'half-cab kickflip',
-    'FS 360', 'nollie big-flip', 'big-flip', 'BS 180', 'fakie frontside flip',
-    'nollie late-heelflip', 'nollie shove-it', 'frontside flip', 'nollie BS 180',
-    '360 hardflip', 'varial-heelflip', 'impossible', 'big-spin',
-]
+
+// key values of trick:difficulty
+const tricks = {
+    'kickflip':0.01, 'heelflip':0.02, 'nollie flip':0.07, 'nollie heelflip':0.9, 
+    'shove-it':0.01, 'FS shove-it':0.02, '360 shove-it':0.08, '360 flip':1.3, 
+    'inward heelflip':0.1, 'hardflip':0.1, 'varial kickflip':0.1, 'full-cab':0.12,  
+    'BS 360':0.14, 'frontside flip':0.12, 'backside flip':0.12, 'half-cab':0.4, 'half-cab kickflip':0.1,
+    'FS 360':0.15, 'nollie big-flip':0.17, 'big-flip':0.14, 'BS 180':0.04, 'fakie frontside flip':0.13,
+    'nollie late-heelflip':0.13, 'nollie shove-it':0.07,'nollie BS 180':0.08,'varial heelflip':0.11, 'impossible':0.13
+}
 //rad words
 const coolWords = ['Rad', 'Nice', 'Sick', 'Dope', 'Yew', 'Woah']
 //bad words
@@ -121,9 +122,9 @@ function playSkate(skater1, skater2) {
     // while neither skater has "SKATE"
     while (skater1.str.length < 5 && skater2.str.length < 5) {
         // select trick 
-        let trick = randomElem(tricks) 
+        let trick = randomElem(Object.keys(tricks)) 
         // determine trick success 
-        skater1.judge(skater2)
+        skater1.judge(skater2, tricks[trick])
         // Check win conditions & call appropriate function -- update values & DOM
         skater1.checkWin(trick, skater2)
     }
