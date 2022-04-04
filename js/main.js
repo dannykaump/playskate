@@ -72,7 +72,6 @@ class MakeSkater {
         }
     }
 }
-
 //skaters -- name, stance, style, skill(between 0 - 0.5) -- //
 let koston = new MakeSkater('Eric Koston', 'regular', 0.35)
 let nyjah = new MakeSkater('Nyjah Huston', 'goofy', 0.35)
