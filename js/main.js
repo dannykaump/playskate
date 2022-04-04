@@ -14,9 +14,8 @@ class MakeSkater {
         this.setting = true
         this.str = ''
         this.landed
-
         //attempt trick -- returns boolean
-        this.landTrick = _ => Math.random() < 0.4 + this.skill // chance of landing increased by skill rating  
+        this.landTrick = _ => Math.random() < 0.4 + this.skill
 
         // clear values & DOM
         this.reset = function () {
@@ -116,10 +115,8 @@ const randomIfUndefined = (arg) => !arg ? randomElem(skaters) : arg;
 btn.addEventListener('click', playSkate)
 //play skate -- fist to "skate" loses
 function playSkate(skater1, skater2) {
-    // create new skater & assign skater2
     skater1 = new MakeSkater(input.value)
     skater2 = randomIfUndefined(skater2)
-    // clear values & DOM
     skater2.reset()
     // while neither skater has "SKATE"
     while (skater1.str.length < 5 && skater2.str.length < 5) {
