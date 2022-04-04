@@ -86,8 +86,6 @@ let foy = new MakeSkater('Jamie Foy', 'regular', 0.33)
 // array of skater objects 
 const skaters = [koston, nyjah, gravette, tony, curren, mullen, reynolds, fletcher, pRod, foy]
 
-// flatground tricks
-
 // key values of trick:difficulty
 const tricks = {
     'kickflip':0.01, 'heelflip':0.02, 'nollie flip':0.07, 'nollie heelflip':0.9, 
@@ -130,6 +128,5 @@ function playSkate(skater1, skater2) {
     }
     //game over
     result.innerHTML = `${skater1.name}: <strong>${skater1.str}</strong> | ${skater2.name}: <strong>${skater2.str}</strong>`;
-    return `${skater1.name}: ${skater1.str} | ${skater2.name}: ${skater2.str}`;
 }
 
